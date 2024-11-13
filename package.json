@@ -1,9 +1,12 @@
 {
   "name": "emotion-style-overload-codemod",
-  "version": "0.0.1",
+  "description": "A codemod for @emotion/styled type overload issues",
+  "version": "1.0.0",
+  "keywords": ["codemod", "emotion", "typescript", "jscodeshift"],
   "packageManager": "yarn@4.5.1",
   "license": "MIT",
   "author": "Jorge Ivan Morales",
+  "repository": "github:xkill-9/emotion-style-overload-codemod.git",
   "engines": {
     "node": "18.x || 20.x"
   },
