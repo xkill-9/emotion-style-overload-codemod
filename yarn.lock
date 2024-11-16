@@ -1772,9 +1772,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"emotion-style-overload-codemod@workspace:.":
+"emotion-styled-codemod@workspace:.":
   version: 0.0.0-use.local
-  resolution: "emotion-style-overload-codemod@workspace:."
+  resolution: "emotion-styled-codemod@workspace:."
   dependencies:
     "@babel/parser": "npm:^7.26.2"
     "@biomejs/biome": "npm:1.9.4"
@@ -1788,7 +1788,7 @@ __metadata:
     jscodeshift: "npm:^17.1.1"
     yargs: "npm:^17.7.2"
   bin:
-    emotion-style-overload-codemod: bin/emotion-style-overload-codemod.js
+    emotion-styled-codemod: bin/emotion-styled-codemod.js
   languageName: unknown
   linkType: soft
 

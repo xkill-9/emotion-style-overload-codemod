@@ -16,7 +16,7 @@ const transformChoices = [
 
 async function main() {
   yargs(hideBin(process.argv))
-    .scriptName('emotion-style-overload-codemod')
+    .scriptName('emotion-styled-codemod')
     .command(
       '$0 <paths...>',
       '',

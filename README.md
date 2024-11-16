@@ -1,9 +1,10 @@
-# emotion-style-overload-codemod
+# emotion-styled-codemod
+Collection of transforms for [jscodeshift](https://github.com/facebook/jscodeshift) related to @emotion/styled
 
 ## Usage
 
 ```bash
-$ npx emotion-style-overload-codemod <paths...>
+$ npx emotion-styled-codemod <paths...>
 
 Positionals:
   paths                                                      [string] [required]
