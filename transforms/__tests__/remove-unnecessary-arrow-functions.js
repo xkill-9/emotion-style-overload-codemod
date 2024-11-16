@@ -33,7 +33,7 @@ const StyledWithBaseComponent = styled(StyledComponent)(({
 
   test('arrow function with body', () => {
     expect(
-  applyTransform(`
+      applyTransform(`
 import styled from '@emotion/styled';
 
 const StyledComponent = styled.span(() => {
@@ -43,8 +43,8 @@ const StyledComponent = styled.span(() => {
     display,
   });
 })
-`)
-).toMatchInlineSnapshot(`
+`),
+    ).toMatchInlineSnapshot(`
 "import styled from '@emotion/styled';
 
 const StyledComponent = styled.span(() => {
