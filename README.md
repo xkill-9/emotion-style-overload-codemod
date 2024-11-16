@@ -48,3 +48,8 @@ import styled from '@emotion/styled';
 ```
 
 NOTE: The extra parenthesis around the returned object is an artifact of jscodeshift' object expression builder and should be removed if you use a code formatter like Prettier.
+
+## Acknowledgements 
+
+This project is based on [types-react-codemod](https://github.com/eps1lon/types-react-codemod)
+
