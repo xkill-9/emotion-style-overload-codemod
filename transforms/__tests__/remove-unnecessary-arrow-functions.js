@@ -1,16 +1,16 @@
 const { expect, describe, test } = require('@jest/globals');
 const TestUtils = require('jscodeshift/dist/testUtils');
-const emotionStyleOverloadTransform = require('../emotion-style-overload-codemod');
+const transform = require('../remove-unnecessary-arrow-functions');
 const dedent = require('dedent');
 
 function applyTransform(source, options = {}) {
-  return TestUtils.applyTransform(emotionStyleOverloadTransform, options, {
+  return TestUtils.applyTransform(transform, options, {
     path: 'test.d.ts',
     source: dedent(source),
   });
 }
 
-describe('transform', () => {
+describe('remove-unnecessary-arrow-functions', () => {
   test('arrow function without body', () => {
     expect(
       applyTransform(`
@@ -33,7 +33,7 @@ const StyledWithBaseComponent = styled(StyledComponent)(({
 
   test('arrow function with body', () => {
     expect(
-      applyTransform(`
+  applyTransform(`
 import styled from '@emotion/styled';
 
 const StyledComponent = styled.span(() => {
@@ -43,11 +43,11 @@ const StyledComponent = styled.span(() => {
     display,
   });
 })
-`),
-    ).toMatchInlineSnapshot(`
+`)
+).toMatchInlineSnapshot(`
 "import styled from '@emotion/styled';
 
-const StyledComponent = styled.span(_ => {
+const StyledComponent = styled.span(() => {
 const display = 'none';
 
 return ({

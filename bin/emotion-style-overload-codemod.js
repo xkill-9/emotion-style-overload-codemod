@@ -35,7 +35,7 @@ async function main() {
         const args = [
           '--extensions=tsx,ts',
           `--ignore-pattern=${ignorePattern}`,
-          `--transform ${path.join(__dirname, '../transforms/emotion-style-overload-codemod.js')}`,
+          `--transform ${path.join(__dirname, '../transforms/remove-unnecessary-arrow-functions.js')}`,
         ];
 
         if (dry) args.push('--dry');

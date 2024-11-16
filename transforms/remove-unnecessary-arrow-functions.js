@@ -36,11 +36,6 @@ function transform(file, api) {
           // Replace arrow function with the returned object
           path.replace(path.node.body);
           break;
-        // If the function has a body
-        case 'BlockStatement':
-          // Add an underscore as an unused param to silence linters
-          path.node.params.push(j.identifier('_'));
-          break;
         default:
           break;
       }

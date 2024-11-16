@@ -17,9 +17,11 @@ Options:
   --ignore-pattern                      [string] [default: "**/node_modules/**"]
 ```
 
-## Transform 
+## Transforms
 
-The codemod looks for emotion styled component declarations and replaces function calls with no params with their returned object if possible, otherwise, it adds an underscore as an unused param:
+### `remove-unnecessary-arrow-functions`
+
+This transform looks for emotion styled component declarations and replaces function calls with no parameters with their returned object if possible, if the function has an actual body then no transformation is applied.
 
 ```diff
 import styled from '@emotion/styled';
@@ -27,14 +29,7 @@ import styled from '@emotion/styled';
 -const StyledComponent = styled.div(() => ({ display: 'flex' })); 
 +const StyledComponent = styled.div(({ display: 'flex' })); 
 
--const StyledComponentWithBody = styled.div(() => {
-    const color = 'red';
+-const StyledWithBaseComponent = styled(SomeBaseComponent)(() => ({ display: 'flex' })); 
++const StyledWithBaseComponent = styled(SomeBaseComponent)(({ display: 'flex' })); 
 
-    return ({ color });
-});
-+const StyledComponentWithBody = styled.div(_ => {
-    const color = 'red';
-
-    return ({ color });
-});
 ```
