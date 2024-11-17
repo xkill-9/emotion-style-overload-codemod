@@ -1,5 +1,6 @@
 const removeUnnecessaryArrowFunctionsTransform = require('./remove-unnecessary-arrow-functions');
 const addConstAssertionTransform = require('./add-const-assertion');
+const moveTypeAnnotationTransform = require('./move-type-annotation');
 
 /**
  * @type {import('jscodeshift').Transform}
@@ -20,6 +21,10 @@ function transform(file, api, options) {
 
   if (transformNames.has('add-const-assertion')) {
     transforms.push(addConstAssertionTransform);
+  }
+
+  if (transformNames.has('move-type-annotation')) {
+    transforms.push(moveTypeAnnotationTransform);
   }
 
   let skippedAllOptions = true;

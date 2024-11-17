@@ -6,6 +6,7 @@ describe('transform-picker', () => {
   let transformPicker;
   let removeUnnecessaryArrowFunctionsTransform;
   let addConstAssertionTransform;
+  let moveTypeAnnotationTransform;
 
   function applyTransform(source, options = {}) {
     return TestUtils.applyTransform(transformPicker, options, {
@@ -29,6 +30,7 @@ describe('transform-picker', () => {
       '../remove-unnecessary-arrow-functions',
     );
     addConstAssertionTransform = mockTransform('../add-const-assertion');
+    moveTypeAnnotationTransform = mockTransform('../move-type-annotation.js');
 
     transformPicker = require('../transform-picker');
   });
@@ -40,6 +42,7 @@ describe('transform-picker', () => {
 
     expect(removeUnnecessaryArrowFunctionsTransform).toHaveBeenCalled();
     expect(addConstAssertionTransform).not.toHaveBeenCalled();
+    expect(moveTypeAnnotationTransform).not.toHaveBeenCalled();
   });
 
   test('applies all', () => {
@@ -47,10 +50,12 @@ describe('transform-picker', () => {
       selectedTransforms: [
         'remove-unnecessary-arrow-functions',
         'add-const-assertion',
+        'move-type-annotation',
       ].join(','),
     });
 
     expect(removeUnnecessaryArrowFunctionsTransform).toHaveBeenCalled();
     expect(addConstAssertionTransform).toHaveBeenCalled();
+    expect(moveTypeAnnotationTransform).toHaveBeenCalled();
   });
 });

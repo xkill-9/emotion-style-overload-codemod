@@ -12,6 +12,7 @@ const inquirerImport = import('@inquirer/checkbox');
 const transformChoices = [
   { checked: true, value: 'remove-unnecessary-arrow-functions' },
   { checked: true, value: 'add-const-assertion' },
+  { checked: true, value: 'move-type-annotation' },
 ];
 
 async function main() {

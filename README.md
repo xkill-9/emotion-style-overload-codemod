@@ -20,7 +20,7 @@ Options:
 
 ### `remove-unnecessary-arrow-functions`
 
-Looks for component declarations and replaces functions with no parameters with their returned object if possible, if the function has an actual body then no transformation is applied.
+Replaces styled component functions with no parameters with their returned object if possible, if the function has an actual body then no transformation is applied.
 
 ```diff
 import styled from '@emotion/styled';
@@ -35,7 +35,7 @@ import styled from '@emotion/styled';
 
 ### `add-const-assertion`
 
-Looks for component declarations and adds `as const` to their returned object if the function has no parameters, if the object already has type assertion then no transformation is applied. This is a workaround for a very [specific bug](https://github.com/emotion-js/emotion/issues/3174) with TypeScript type overloads in its latest version (v5.6.3 at the time of writing) and @emotion/styled starting from version 11.11.5.
+Adds `as const` to the returned object of styled calls if the function has no parameters, if the object already has a type assertion then no transformation is applied. This is a workaround for a very [specific bug](https://github.com/emotion-js/emotion/issues/3174) with TypeScript type overloads in its latest version (v5.6.3 at the time of writing) and @emotion/styled starting from version 11.11.5.
 
 ```diff
 import styled from '@emotion/styled';
@@ -48,6 +48,21 @@ import styled from '@emotion/styled';
 ```
 
 NOTE: The extra parenthesis around the returned object is an artifact of jscodeshift' object expression builder and should be removed if you use a code formatter like Prettier.
+
+### `move-type-annotation`
+
+Moves the function parameter's type annotation to the styled call.
+
+```diff
+import styled from '@emotion/styled';
+
+-const StyledComponent = styled.div(({ display }: { display: string }) => ({ display })); 
++const StyledComponent = styled.div<{ display: string }>(({ display }) => ({ display })); 
+
+-const StyledWithBaseComponent = styled(SomeBaseComponent)(({ display }: { display: string }) => ({ display })); 
++const StyledWithBaseComponent = styled(SomeBaseComponent)<{ display: string }>(({ display }) => ({ display })); 
+```
+
 
 ## Acknowledgements 
 

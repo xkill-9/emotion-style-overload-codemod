@@ -1,3 +1,5 @@
+const findStyledCalls = require('./utils/findStyledCalls');
+
 /**
  * @type {import('jscodeshift').Transform}
  */
@@ -6,32 +8,15 @@ function transform(file, api) {
   const root = j(file.source);
 
   let hasChanged = false;
-  const emotionDefaultImport = root
-    .find(j.ImportDeclaration, {
-      source: { value: '@emotion/styled' },
-    })
-    .find(j.ImportDefaultSpecifier);
-
-  const emotionImportedName = emotionDefaultImport.length
-    ? emotionDefaultImport.get()?.node?.local?.name
-    : undefined;
-
-  if (!emotionImportedName) return file.source;
 
   // biome-ignore lint/complexity/noForEach: <explanation>
-  root
-    .find(j.Identifier, {
-      name: emotionImportedName,
-    })
-    .closest(j.VariableDeclarator, {
-      init: { type: 'CallExpression' },
-    })
+  findStyledCalls(j, root)
     .find(j.ArrowFunctionExpression)
     .filter((path) => path.node.params.length === 0)
     .find(j.ObjectExpression)
     .forEach((path) => {
       // If the object already has a type assertion do nothing.
-      if (path.parent.node.type === 'TSAsExpression') return;
+      if (path.parent && j.TSAsExpression.check(path.parent.node)) return;
 
       // Otherwise add a const assertion
       hasChanged = true;
